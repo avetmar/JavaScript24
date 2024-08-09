@@ -1,0 +1,14 @@
+{
+    "editor.inlayHints.enabled": "off",
+    "editor.parameterHints.cycle": false,
+    "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
+    "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
+    "workbench.editor.languageDetectionHints": {
+        "untitledEditors": false,
+        "notebookEditors": false
+    },
+    "editor.parameterHints.enabled": false,
+    "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
+    "accessibility.verbosity.inlineChat": false,
+    "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false
+}

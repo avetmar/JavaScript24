@@ -1,0 +1,10 @@
+{
+  "title": "Teenage Mutant Ninja Turtles",
+  "characters": {
+    "main": ["Leonardo", "Raphael", "Donatello", "Michelangelo"],
+    "second": {
+      "master": "Splinter",
+      "friend": ["April O'neil", "Casey Jones"]
+    }
+  }
+}
