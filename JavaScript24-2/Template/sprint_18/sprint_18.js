@@ -58,6 +58,7 @@ const t05 = async () => {
     method: "POST",
   });
   const result = await response.json();
+  console.log(result);
   document.querySelector(".out-5").textContent = result["time"]["h"];
 };
 
@@ -114,7 +115,7 @@ document.querySelector(".b-8").addEventListener("click", t08);
 let foo_9 = 3;
 
 const t09 = async () => {
-  const response = await fetch(URL + "3618/employee/read?id=" + foo_8, {
+  const response = await fetch(URL + "3618/employee/read?id=" + foo_9, {
     method: "GET",
     headers: requestHeaders,
   });
