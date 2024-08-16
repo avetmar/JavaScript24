@@ -135,11 +135,17 @@ const f8 = () => {
   res08 = [];
   const num = +document.querySelector(".i-8").value;
 
-  for (let i = 0; i < a8.length; i++) {
-    if (a8.indexOf(num, i) !== -1) {
-      res08.push(a8.indexOf(num, i));
-      i = a8.indexOf(num, i) + 1;
-    }
+  // for (let i = 0; i < a8.length; i++) {
+  //   if (a8.indexOf(num, i) !== -1) {
+  //     res08.push(a8.indexOf(num, i));
+  //     i = a8.indexOf(num, i) + 1;
+  //   }
+  // }
+
+  let i = a8.indexOf(num);
+  while (i <= a8.length) {
+    res08.push(a8.indexOf(num, i));
+    i++;
   }
 
   document.querySelector(".out-8").innerHTML = res08;
