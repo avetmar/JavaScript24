@@ -180,9 +180,9 @@ let a11 = [-2, 3, 14, 5, -6, 7]; // 14
 
 const f11 = () => {
   let res = a11.reduce((accum, item) => {
+    // console.log(accum);
     if (item > accum) {
-      accum = item;
-      console.log(accum);
+      return item;
     }
     return accum;
   });
@@ -196,47 +196,72 @@ const f11 = () => {
 let a12 = [-2, 3, 14, 15, -6, 7];
 
 const f12 = () => {
-  let res = a12.reduce((accum, item, index) => {
-    if (item > accum) {
-      accum = item;
+  let res = a12.reduce((accum, item, index, array) => {
+    console.log(accum);
+    if (item > array[accum]) {
+      return index;
+    } else {
+      return accum;
     }
-    return a12.indexOf(accum);
-  });
-  //   res = a12.indexOf(res);
+  }, 0);
+
   document.querySelector(".out-12").innerHTML = res;
 };
 
 // TASK 13
-// По нажатию b-13 выполняется функция f13. Функция должна перебрать массив a13 и вывести в out-13 длину самого большого вложенного в a13 массива. Применяем reduce.
+// По нажатию b-13 выполняется функция f13.+
+// Функция должна перебрать массив a13 и вывести в out-13 длину самого большого вложенного в a13 массива. Применяем reduce.+
 
 let a13 = [[4, 4, 4], [4, 4], [4, 4, 4, 4], [4], [4, 4]];
 
 const f13 = () => {
-  // let res = a13.reduce((accum, item) =>
+  let res = a13.reduce((accum, item) => {
+    if (item.length > accum) {
+      return item.length;
+    } else {
+      return accum;
+    }
+  }, 0);
+  document.querySelector(".out-13").innerHTML = res;
 };
 
 // TASK 14
-// По нажатию b-14 выполняется функция f14. Функция должна перебрать массив a14 и вывести в out-14 самый большой вложенный в a14 массив. Применяем reduce.
+// По нажатию b-14 выполняется функция f14.+
+// Функция должна перебрать массив a14 и вывести в out-14 самый большой вложенный в a14 массив. Применяем reduce.+
 
 let a14 = [[4, 4, 4], [4, 4], [4, 4, 4, 4], [4], [4, 4]];
 
 const f14 = () => {
-  // let res =
+  let res = a14.reduce((accum, item) => {
+    if (item.length > accum.length) {
+      return item;
+    } else {
+      return accum;
+    }
+  }, []);
   document.querySelector(".out-14").innerHTML = res;
 };
 
 // TASK 15
-// По нажатию b-15 выполняется функция f15. Функция должна перебрать массив a15 измерений температуры за сутки  и вывести в out-15 среднюю арифметическую температуру. Применяем reduce.
+// По нажатию b-15 выполняется функция f15. +
+//Функция должна перебрать массив a15 измерений температуры за сутки  и вывести в out-15 среднюю арифметическую температуру. Применяем reduce.+
 
 let a15 = [0, 0, 1, 1, 1, 0, 2, 2, 3, 3, 3, 4, 5, 5, 6, 4, 4, 3, 1, 1, 0, 0, -1];
 
 const f15 = () => {
-  // let res = a15.reduce((accum, item) =>
+  let res = a15.reduce((accum, item) => {
+    return (accum += item);
+  }, 0);
+
+  res = Math.round(res / a15.length);
+
   document.querySelector(".out-15").innerHTML = res;
 };
 
 // TASK 16
-// По нажатию b-16 выполняется функция f16. Функция должна выполнить переиндексацию массива a16 и получить объект который состоит из ключей - id и значений name. Применяем reduce. Результирующий объект вывести на страницу в out-16 в формаете ключ пробел значение перенос строки.
+// По нажатию b-16 выполняется функция f16. +
+// Функция должна выполнить переиндексацию массива a16 и получить объект который состоит из ключей - id и значений name.+
+// Применяем reduce. Результирующий объект вывести на страницу в out-16 в формаете ключ пробел значение перенос строки.+
 
 let a16 = [
   { id: 45, name: "Ivar" },
@@ -246,10 +271,24 @@ let a16 = [
 
 // Ожидаю объект вида  { 45 : "Ivar", 464 : "Astor", 17 : "Bristol" }
 
-const f16 = () => {};
+const f16 = () => {
+  let res = a16.reduce((accum, item) => {
+    accum[item.id] = item.name;
+    return accum;
+  }, {});
+
+  let out = "";
+  for (let key in res) {
+    out += key + " " + res[key] + "<br/>";
+  }
+
+  document.querySelector(".out-16").innerHTML = out;
+};
 
 // TASK 17
-// По нажатию b-17 выполняется функция f17. Функция должна преобразовать объект в массив, который содержит только название стран. Результирующий массив должен находится в a17_res. Также выведите a17_res в out-17 через пробел.
+// По нажатию b-17 выполняется функция f17.+
+// Функция должна преобразовать объект в массив, который содержит только название стран.+
+// Результирующий массив должен находится в a17_res. Также выведите a17_res в out-17 через пробел.+
 
 let a17 = {
   Lyon: "France",
@@ -259,37 +298,61 @@ let a17 = {
 
 let a17_res = [];
 
-const f17 = () => {};
+const f17 = () => {
+  for (let key in a17) {
+    if (!a17_res.includes(a17[key])) {
+      a17_res.push(a17[key]);
+    }
+  }
+  document.querySelector(".out-17").textContent = a17_res.join(" ");
+};
 
 // TASK 18
-// По нажатию b-18 выполняется функция f18. Функция должна вывести в out-18 массив a18 в формате ключ пробел значение перенос строки. Для формирования строки для вывода используйте reduce.
+// По нажатию b-18 выполняется функция f18.+
+// Функция должна вывести в out-18 массив a18 в формате ключ пробел значение перенос строки.+
+// Для формирования строки для вывода используйте reduce.+
 
 let a18 = [];
 a18[100] = 67;
 a18[2000] = 15;
 
 const f18 = () => {
-  // let res = a18.reduce((accum, item, index) =>
+  let res = a18.reduce((accum, item, index) => {
+    accum += index + " " + item + "<br/>";
+    return accum;
+  }, "");
+  document.querySelector(".out-18").innerHTML = res;
 };
 
 // TASK 19
-// По нажатию b-19 выполняется функция f19. Функция должна вывести в out-19 массив a19 в формате ключ пробел значение перенос строки. Для формирования строки для вывода используйте reduce. Чтобы из строки сделать массив - split. Результат вывести в out-19.
+// По нажатию b-19 выполняется функция f19.+
+// Функция должна вывести в out-19 массив a19 в формате ключ пробел значение перенос строки.+
+//Для формирования строки для вывода используйте reduce.+
+//Чтобы из строки сделать массив - split. Результат вывести в out-19.+
 
 let a19 = "hello";
 
 const f19 = () => {
-  // let res = a19.split('').reduce((accum, item)
-  // document.querySelector('.out-19').innerHTML = res;
+  let res = a19.split("").reduce((accum, item) => {
+    accum += a19.indexOf(item) + " " + item + "<br/>";
+    return accum;
+  }, "");
+  document.querySelector(".out-19").innerHTML = res;
 };
 
 // TASK 20
-// По нажатию b-20 выполняется функция f20. Функция должна вывести в out-20 массив a20 в обратном порядке, через пробел. Т.е. res должен быть массивом с обратным порядком по отношению к a20.
+// По нажатию b-20 выполняется функция f20.+
+// Функция должна вывести в out-20 массив a20 в обратном порядке, через пробел.+
+// Т.е. res должен быть массивом с обратным порядком по отношению к a20.+
 
 let a20 = [4, 5, 6];
 
 const f20 = () => {
-  // let res = a19.split('').reduce((accum, item) => {
-  // res = [6,5,4]
+  let res = a20.reduce((accum, item) => {
+    accum.unshift(item);
+    return accum;
+  }, []);
+  document.querySelector(".out-20").textContent = res.join(" ");
 };
 
 document.querySelector(".b-1").addEventListener("click", f1);
